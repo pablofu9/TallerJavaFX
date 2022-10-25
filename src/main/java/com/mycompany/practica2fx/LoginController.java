@@ -4,6 +4,7 @@
  */
 package com.mycompany.practica2fx;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -36,6 +37,10 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblDNI, lblPass;
     
+    @FXML
+    private void registrarse() throws IOException{
+        App.setRoot("Registro");
+    }
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         

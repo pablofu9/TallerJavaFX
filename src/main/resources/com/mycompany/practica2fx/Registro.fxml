@@ -1,11 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.RegistroController">
-    
+<AnchorPane id="AnchorPane" prefHeight="401.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.RegistroController">
+   <children>
+      <Label layoutX="200.0" layoutY="23.0" text="REGISTRO">
+         <font>
+            <Font name="Calibri Bold Italic" size="21.0" />
+         </font>
+      </Label>
+      <Separator layoutY="60.0" prefHeight="0.0" prefWidth="531.0" />
+      <Label layoutX="63.0" layoutY="101.0" text="DNI">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="63.0" layoutY="216.0" text="Contraseña">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="63.0" layoutY="178.0" text="Apellido">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="141.0" text="Nombre">
+         <font>
+            <Font name="Cambria" size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="registroDni" layoutX="262.0" layoutY="100.0" />
+      <TextField fx:id="registroPass" layoutX="262.0" layoutY="215.0" />
+      <TextField fx:id="registroApellido" layoutX="262.0" layoutY="177.0" />
+      <TextField fx:id="registroNombre" layoutX="262.0" layoutY="140.0" />
+      <Button fx:id="btnRegistro" layoutX="63.0" layoutY="263.0" mnemonicParsing="false" onAction="#registrarUser" prefHeight="25.0" prefWidth="128.0" text="Registrarse" />
+      <Button fx:id="btnVolver" layoutX="262.0" layoutY="263.0" mnemonicParsing="false" onAction="#volver" prefHeight="25.0" prefWidth="149.0" text="Volver atras" />
+   </children>
 </AnchorPane>
