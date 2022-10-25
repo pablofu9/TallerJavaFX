@@ -16,6 +16,7 @@ import javafx.scene.control.TextField;
 import modelo.CRUD_Usuarios;
 import modelo.Conexion;
 import static modelo.Conexion.conectar;
+import static modelo.Conexion.getConexion;
 import modelo.Usuarios;
 
 /**
@@ -25,7 +26,7 @@ import modelo.Usuarios;
  */
 public class RegistroController implements Initializable {
 
-    Connection con;
+    Connection con=getConexion();
     
 
     @FXML
@@ -52,8 +53,10 @@ public class RegistroController implements Initializable {
         } else {
             
             //MIRAR PORQUE NO CONECTA A LA BASE DE DATOS
-            Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
-            CRUD_Usuarios.insertarUsuario(con, user1);
+           
+           Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
+           CRUD_Usuarios.insertarUsuario(con, user1);
+           
         }
 
     }
