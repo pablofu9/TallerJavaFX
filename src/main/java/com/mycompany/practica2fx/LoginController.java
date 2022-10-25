@@ -16,6 +16,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import modelo.CRUD_Usuarios;
+import modelo.Comprobaciones;
 import static modelo.Conexion.getConexion;
 
 /**
@@ -24,7 +25,7 @@ import static modelo.Conexion.getConexion;
  * @author furu9
  */
 public class LoginController implements Initializable {
-
+    
     Connection con = getConexion();
     /**
      * Initializes the controller class.
@@ -32,16 +33,16 @@ public class LoginController implements Initializable {
     String contra;
     @FXML
     private Button botonIniciar, botonRegistro;
-
+    
     @FXML
     private TextField txtDni;
-
+    
     @FXML
     private PasswordField txtPass;
-
+    
     @FXML
     private Label lblDNI, lblPass;
-
+    
     @FXML
     private void registrarse() throws IOException {
         App.setRoot("Registro");
@@ -54,11 +55,7 @@ public class LoginController implements Initializable {
         //Si alguno de los dos campos esta vacio, te salta un warning de que no pueden estar vacios
         if (txtDni.getText().isEmpty() || txtPass.getText().isEmpty())
         {
-            Alert alertEmpty = new Alert(Alert.AlertType.WARNING);
-            alertEmpty.setHeaderText(null);
-            alertEmpty.setTitle("Info");
-            alertEmpty.setContentText("Introduce tus credenciales de acceso");
-            alertEmpty.showAndWait();
+            Comprobaciones.crearAlertaError("Introduce tus credenciales de acceso");
         } else
         {
             //Guardamos la contraseña en una variable para comprobar el login
@@ -68,27 +65,19 @@ public class LoginController implements Initializable {
             {
                 if (contra.equals(txtPass.getText()))
                 {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Info");
-                    alert.setContentText("Login correcto");
-                    alert.showAndWait();
+                    Comprobaciones.crearAlertaInfo("Login correcto");
                 } else
                 {
-                    Alert alert = new Alert(Alert.AlertType.WARNING);
-                    alert.setHeaderText(null);
-                    alert.setTitle("Info");
-                    alert.setContentText("Contraseña incorrecta");
-                    alert.showAndWait();
+                   Comprobaciones.crearAlertaError("Contraseña incorrecta");
                 }
             }
         }
-
+        
     }
-
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        
     }
-
+    
 }

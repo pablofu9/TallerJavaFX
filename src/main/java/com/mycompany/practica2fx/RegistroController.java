@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import modelo.CRUD_Usuarios;
+import modelo.Comprobaciones;
 import modelo.Conexion;
 import static modelo.Conexion.conectar;
 import static modelo.Conexion.getConexion;
@@ -26,8 +27,7 @@ import modelo.Usuarios;
  */
 public class RegistroController implements Initializable {
 
-    Connection con=getConexion();
-    
+    Connection con = getConexion();
 
     @FXML
     private TextField registroDni, registroNombre, registroApellido, registroPass;
@@ -44,27 +44,27 @@ public class RegistroController implements Initializable {
     @FXML
     private void registrarUser() {
         //Esto nos va a sacar una alerta de un error si dejas algun campo vacio
-        if (registroNombre.getText().isEmpty() || registroApellido.getText().isEmpty() || registroDni.getText().isEmpty() || registroPass.getText().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setHeaderText(null);
-            alert.setTitle("Error");
-            alert.setContentText("Hay algun campo vacio");
-            alert.showAndWait();
-        } else {
-            
-            //MIRAR PORQUE NO CONECTA A LA BASE DE DATOS
-           
-           Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
-           CRUD_Usuarios.insertarUsuario(con, user1);
-           
+        if (registroNombre.getText().isEmpty() || registroApellido.getText().isEmpty() || registroDni.getText().isEmpty() || registroPass.getText().isEmpty())
+        {
+            Comprobaciones.crearAlertaError("Debes rellenar todos los campos");
+        } else
+        {
+            //Si los campos estan rellenos, comprueba el formato de dni
+            if (Comprobaciones.dniCorrecto(registroDni.getText()))
+            {
+                Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
+                CRUD_Usuarios.insertarUsuario(con, user1);
+            } else
+            {
+                Comprobaciones.crearAlertaError("Formato incorrecto");
+            }
+
         }
 
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-               Conexion.conectar();
-               
 
     }
 

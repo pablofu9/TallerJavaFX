@@ -32,20 +32,13 @@ public class CRUD_Usuarios {
             ps.setString(4, user.getPassword());
             ps.executeUpdate();
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Info");
-            alert.setContentText("Usuario Insertado");
-            alert.showAndWait();
+            Comprobaciones.crearAlertaInfo("Usuario insertado con exito");
 
+            //Salta la exception si encuentra un usuario con ese mismo dni
         } catch (SQLException e)
         {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setHeaderText(null);
-            alert.setTitle("Info");
-            alert.setContentText("No se ha podido insertar el usuario");
-            alert.showAndWait();
+            Comprobaciones.crearAlertaError("Ya existe un usuario registrado con ese DNI");
         }
 
     }
@@ -73,23 +66,14 @@ public class CRUD_Usuarios {
             if (encontrado)
             {
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Usuario encontrado");
-                alert.showAndWait();
+                Comprobaciones.crearAlertaInfo("Usuario encontrado");
             } else
             {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Usuario no encontrado");
-                alert.showAndWait();
+                Comprobaciones.crearAlertaInfo("Usuario no encontrado");
 
             }
         } catch (SQLException ex)
         {
-            //JOptionPane.showMessageDialog(null, ex.toString());
 
         }
         return u.getPassword();
