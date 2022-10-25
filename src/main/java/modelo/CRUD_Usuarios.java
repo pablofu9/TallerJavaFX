@@ -48,7 +48,7 @@ public class CRUD_Usuarios {
 
     }
 
-    public static void buscarUsuario(Connection conexion, String dni) {
+    public static String buscarUsuario(Connection conexion, String dni) {
 
         PreparedStatement ps;
         ResultSet rs;
@@ -89,6 +89,7 @@ public class CRUD_Usuarios {
             //JOptionPane.showMessageDialog(null, ex.toString());
 
         }
+        return u.getPassword();
 
     }
 }
