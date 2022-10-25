@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
@@ -24,10 +25,14 @@ public class NuevoVehiculoController implements Initializable {
      */
     @FXML
     private TextField txtMatricula, txtMarca, txtModelo, txtPeso, txtCilindrada;
-
-    /*@FXML
+    
+    @FXML
+    private Label lblUser;
+    
+    /*
+    @FXML
     private CheckBox checkManguitos, checkSuspension, checkAsientos, checkAsientos, checkAire;
-*/
+    */
     @FXML
     private Pane panelMoto, panelCoche;
 

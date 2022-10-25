@@ -43,6 +43,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblDNI, lblPass;
     
+    //Este boton va a llevarnos a la pantalla de registro
     @FXML
     private void registrarse() throws IOException {
         App.setRoot("Registro");
@@ -50,7 +51,7 @@ public class LoginController implements Initializable {
 
     //Boton de inicio de sesion
     @FXML
-    private void inicioSesion() {
+    private void inicioSesion() throws IOException {
 
         //Si alguno de los dos campos esta vacio, te salta un warning de que no pueden estar vacios
         if (txtDni.getText().isEmpty() || txtPass.getText().isEmpty())
@@ -65,7 +66,9 @@ public class LoginController implements Initializable {
             {
                 if (contra.equals(txtPass.getText()))
                 {
+                    
                     Comprobaciones.crearAlertaInfo("Login correcto");
+                    App.setRoot("Menu");
                 } else
                 {
                    Comprobaciones.crearAlertaError("Contraseña incorrecta");

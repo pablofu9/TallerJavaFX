@@ -23,11 +23,16 @@
         <columns>
           <TableColumn fx:id="cMatricula" prefWidth="91.0" text="Matricula" />
           <TableColumn fx:id="cMarca" prefWidth="92.0" text="Marca" />
-            <TableColumn fx:id="cModelo" prefWidth="111.0" text="Modelo" />
-            <TableColumn fx:id="cPeso" prefWidth="77.0" text="Peso" />
-            <TableColumn fx:id="cCilindrada" prefWidth="94.0" text="Cilindrada" />
-            <TableColumn fx:id="cTipo" minWidth="4.0" prefWidth="101.0" text="Tipo" />
+            <TableColumn fx:id="cModelo" prefWidth="98.0" text="Modelo" />
+            <TableColumn fx:id="cPeso" prefWidth="100.0" text="Peso" />
+            <TableColumn fx:id="cCilindrada" prefWidth="115.0" text="Cilindrada" />
+            <TableColumn fx:id="cTipo" minWidth="4.0" prefWidth="70.0" text="Tipo" />
         </columns>
       </TableView>
+      <Label fx:id="lblUser" layoutX="462.0" layoutY="17.0" prefHeight="25.0" prefWidth="82.0">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
