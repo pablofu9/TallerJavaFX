@@ -48,8 +48,8 @@ public class LoginController implements Initializable {
     //Boton de inicio de sesion
     @FXML
     private void inicioSesion() {
-        String contra=CRUD_Usuarios.buscarUsuario(con,txtDni.getText() );
-        System.out.println(contra);
+        CRUD_Usuarios.buscarUsuario(con,txtDni.getText() );
+        
         
     }
 
