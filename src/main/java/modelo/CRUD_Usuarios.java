@@ -7,6 +7,7 @@ package modelo;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -19,8 +20,7 @@ public class CRUD_Usuarios {
         PreparedStatement ps;
         String sql;
 
-        try
-        {
+        try {
 
             sql = "insert into usuario(nombre, apellido, dni,password) values(?,?,?,?)";
             ps = con.prepareStatement(sql);
@@ -29,10 +29,20 @@ public class CRUD_Usuarios {
             ps.setString(3, user.getDni());
             ps.setString(4, user.getPassword());
             ps.executeUpdate();
-            //JOptionPane.showMessageDialog(null, "Se han insertado los datos");
-        } catch (SQLException e)
-        {
-            //JOptionPane.showMessageDialog(null, "Error de conexión:" + e.getMessage());
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Info");
+            alert.setContentText("Usuario Insertado");
+            alert.showAndWait();
+
+        } catch (SQLException e) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setTitle("Info");
+            alert.setContentText("No se ha podido insertar el usuario");
+            alert.showAndWait();
         }
 
     }

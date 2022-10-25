@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="460.0" prefWidth="672.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.NuevoVehiculoController">
+   <children>
+      <Label layoutX="64.0" layoutY="44.0" text="Matricula">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="93.0" text="Marca">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="64.0" layoutY="147.0" text="Modelo">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="42.0" text="Peso">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="91.0" text="Cilindrada">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="145.0">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <Label layoutX="336.0" layoutY="147.0" text="Tipo">
+         <font>
+            <Font name="Bell MT" size="21.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtMatricula" layoutX="174.0" layoutY="45.0" />
+      <TextField fx:id="txtMarca" layoutX="174.0" layoutY="94.0" />
+      <TextField fx:id="txtModelo" layoutX="174.0" layoutY="148.0" />
+      <TextField fx:id="txtPeso" layoutX="469.0" layoutY="43.0" />
+      <TextField fx:id="txtCilindrada" layoutX="469.0" layoutY="94.0" />
+      <ComboBox layoutX="469.0" layoutY="148.0" prefWidth="150.0" />
+      <Pane fx:id="panelMoto" accessibleText="Moto" layoutX="49.0" layoutY="230.0" prefHeight="200.0" prefWidth="227.0">
+         <children>
+            <CheckBox fx:id="checkManguitos" layoutX="14.0" layoutY="21.0" mnemonicParsing="false" text="Manguitos calefactables">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+            <CheckBox fx:id="checkSuspension" layoutX="14.0" layoutY="53.0" mnemonicParsing="false" text="Suspension regulable">
+               <font>
+                  <Font size="14.0" />
+               </font></CheckBox>
+         </children>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect>
+      </Pane>
+      <Pane layoutX="392.0" layoutY="230.0" prefHeight="200.0" prefWidth="227.0" />
+      <Pane fx:id="panelCoche" layoutX="402.0" layoutY="240.0" prefHeight="200.0" prefWidth="227.0">
+         <children>
+            <CheckBox fx:id="checkAsientos" layoutX="22.0" layoutY="16.0" mnemonicParsing="false" text="Asientos calefactables">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="checkAire" layoutX="22.0" layoutY="48.0" mnemonicParsing="false" text="Aire acondicionado">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+            <CheckBox fx:id="checkTecho" layoutX="22.0" layoutY="83.0" mnemonicParsing="false" text="Techo solar">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </CheckBox>
+         </children>
+         <effect>
+            <Lighting>
+               <bumpInput>
+                  <Shadow />
+               </bumpInput>
+               <light>
+                  <Light.Distant />
+               </light>
+            </Lighting>
+         </effect></Pane>
+      <Separator layoutX="7.0" layoutY="203.0" prefHeight="0.0" prefWidth="655.0" />
+   </children>
+</AnchorPane>

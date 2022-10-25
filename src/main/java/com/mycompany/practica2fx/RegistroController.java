@@ -14,6 +14,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import modelo.CRUD_Usuarios;
+import modelo.Conexion;
+import static modelo.Conexion.conectar;
 import modelo.Usuarios;
 
 /**
@@ -24,6 +26,7 @@ import modelo.Usuarios;
 public class RegistroController implements Initializable {
 
     Connection con;
+    
 
     @FXML
     private TextField registroDni, registroNombre, registroApellido, registroPass;
@@ -47,6 +50,8 @@ public class RegistroController implements Initializable {
             alert.setContentText("Hay algun campo vacio");
             alert.showAndWait();
         } else {
+            
+            //MIRAR PORQUE NO CONECTA A LA BASE DE DATOS
             Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
             CRUD_Usuarios.insertarUsuario(con, user1);
         }
@@ -55,7 +60,9 @@ public class RegistroController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+               Conexion.conectar();
+               
+
     }
 
 }
