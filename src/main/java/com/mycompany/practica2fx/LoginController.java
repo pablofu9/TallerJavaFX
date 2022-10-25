@@ -63,20 +63,24 @@ public class LoginController implements Initializable {
         {
             //Guardamos la contraseña en una variable para comprobar el login
             contra = CRUD_Usuarios.buscarUsuario(con, txtDni.getText());
-            if (contra.equals(txtPass.getText()))
+            //Si no encuentra el dni, la variable contraseña sera null, comprobamos con un if
+            if (contra != null)
             {
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Login correcto");
-                alert.showAndWait();
-            } else
-            {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setHeaderText(null);
-                alert.setTitle("Info");
-                alert.setContentText("Contraseña incorrecta");
-                alert.showAndWait();
+                if (contra.equals(txtPass.getText()))
+                {
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Info");
+                    alert.setContentText("Login correcto");
+                    alert.showAndWait();
+                } else
+                {
+                    Alert alert = new Alert(Alert.AlertType.WARNING);
+                    alert.setHeaderText(null);
+                    alert.setTitle("Info");
+                    alert.setContentText("Contraseña incorrecta");
+                    alert.showAndWait();
+                }
             }
         }
 
