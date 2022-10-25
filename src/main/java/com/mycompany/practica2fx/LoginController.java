@@ -50,7 +50,7 @@ public class LoginController implements Initializable {
     //Boton de inicio de sesion
     @FXML
     private void inicioSesion() {
-        
+
         //Si alguno de los dos campos esta vacio, te salta un warning de que no pueden estar vacios
         if (txtDni.getText().isEmpty() || txtPass.getText().isEmpty())
         {
@@ -69,6 +69,13 @@ public class LoginController implements Initializable {
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
                 alert.setContentText("Login correcto");
+                alert.showAndWait();
+            } else
+            {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setHeaderText(null);
+                alert.setTitle("Info");
+                alert.setContentText("Contraseña incorrecta");
                 alert.showAndWait();
             }
         }
