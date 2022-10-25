@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * FXML Controller class
@@ -26,7 +28,11 @@ public class MenuController implements Initializable {
     private Button btnAlta, btnModificar, btnEliminar;
     
     @FXML
-    private ListView listaVehiculos;
+    private TableView tablaVehiculos;
+    @FXML
+    private TableColumn cMatricula, cMarca, cModelo,cPeso,cCilindrada,cTipo;
+    
+    
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
