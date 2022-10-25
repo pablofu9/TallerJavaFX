@@ -21,7 +21,8 @@ public class CRUD_Usuarios {
         PreparedStatement ps;
         String sql;
 
-        try {
+        try
+        {
 
             sql = "insert into usuario(nombre, apellido, dni,password) values(?,?,?,?)";
             ps = con.prepareStatement(sql);
@@ -37,7 +38,8 @@ public class CRUD_Usuarios {
             alert.setContentText("Usuario Insertado");
             alert.showAndWait();
 
-        } catch (SQLException e) {
+        } catch (SQLException e)
+        {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText(null);
@@ -48,34 +50,36 @@ public class CRUD_Usuarios {
 
     }
 
-    public static void buscarUsuario(Connection conexion, String dni) {
+    public static String buscarUsuario(Connection conexion, String dni) {
 
         PreparedStatement ps;
         ResultSet rs;
         boolean encontrado = false;
         Usuarios u = new Usuarios();
-        try {
+        try
+        {
             String SQL = "SELECT * FROM usuario WHERE dni = ? ;";
             ps = (PreparedStatement) conexion.prepareStatement(SQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ps.setString(1, dni);
             rs = ps.executeQuery();
 
-            while (rs.next()) {
+            while (rs.next())
+            {
                 encontrado = true;
-                /*
-                u.setPass(rs.getString("pass"));
-                u.setDescuentos(rs.getDouble("descuentos"));
-                u.setPremium(rs.getBoolean("premium"));
-                 */
+
+                u.setPassword(rs.getString("password"));
+
             }
-            if (encontrado) {
+            if (encontrado)
+            {
 
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
                 alert.setContentText("Usuario encontrado");
                 alert.showAndWait();
-            } else {
+            } else
+            {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setHeaderText(null);
                 alert.setTitle("Info");
@@ -83,12 +87,11 @@ public class CRUD_Usuarios {
                 alert.showAndWait();
 
             }
-        } catch (SQLException ex) {
+        } catch (SQLException ex)
+        {
             //JOptionPane.showMessageDialog(null, ex.toString());
 
         }
-        
-        
-
+        return u.getPassword();
     }
 }
