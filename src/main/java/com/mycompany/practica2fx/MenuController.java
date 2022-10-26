@@ -4,10 +4,15 @@
  */
 package com.mycompany.practica2fx;
 
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -15,6 +20,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.VariablesLogin;
 
 /**
@@ -40,11 +47,25 @@ public class MenuController implements Initializable {
     @FXML
     private ImageView imgIcono;
 
+    //Para ir a la pantalla donde se crean los vehículos
+    @FXML
+    private void altaVehiculo() throws IOException {
+        //Creamos el stage para que vaya al siguiente frame
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("nuevoVehiculo.fxml"));
+        Scene scene = new Scene(root);
+        stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+        //Cerramos la ventana actual
+        Stage loginStage = (Stage) this.btnAlta.getScene().getWindow();
+        loginStage.close();
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblUser.setText( VariablesLogin.getNombreUser());
-        imgIcono.setVisible(true);
-       
+        lblUser.setText(VariablesLogin.getNombreUser());
+
     }
 
 }

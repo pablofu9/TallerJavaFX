@@ -52,6 +52,8 @@ public class LoginController implements Initializable {
     @FXML
     private Label lblDNI, lblPass;
     
+    @FXML
+    private ImageView imgLog, imgPass;
     
 
     //Este boton va a llevarnos a la pantalla de registro
@@ -100,6 +102,9 @@ public class LoginController implements Initializable {
                 } else {
                     Comprobaciones.crearAlertaError("Contraseña incorrecta");
                 }
+                
+            }else{
+                Comprobaciones.crearAlertaError("Credenciales de acceso incorrectas");
             }
         }
 
