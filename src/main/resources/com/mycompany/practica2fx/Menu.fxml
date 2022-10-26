@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
    <children>
       <Label layoutX="249.0" layoutY="25.0" text="VEHÍCULOS">
          <font>
@@ -49,12 +49,12 @@
                <effect>
                   <Glow />
                </effect>
-               <image>
-                  <Image url="file:/D:/DAM/Acceso%20a%20datos/Practicas/TallerJavaFX/src/main/java/imagenes/icono1.jpg" />
-               </image>
                <viewport>
                   <Rectangle2D />
                </viewport>
+               <image>
+                  <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/icono1.jpg" />
+               </image>
             </ImageView>
          </children>
       </Pane>

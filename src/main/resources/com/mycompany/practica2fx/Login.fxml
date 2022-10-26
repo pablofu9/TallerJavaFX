@@ -5,47 +5,67 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.effect.MotionBlur?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="396.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="434.0" prefWidth="693.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.LoginController">
    <children>
-      <Label layoutX="51.0" layoutY="27.0" prefHeight="33.0" prefWidth="228.0" text="Vamos a logearnos !!">
+      <Label layoutX="444.0" layoutY="24.0" prefHeight="13.0" prefWidth="125.0" text="LOGIN" textFill="#3ab4bf">
          <font>
-            <Font name="Bell MT" size="24.0" />
+            <Font name="Bell MT" size="36.0" />
          </font>
       </Label>
-      <Separator layoutY="79.0" prefHeight="3.0" prefWidth="590.0">
+      <Separator layoutX="319.0" layoutY="83.0" prefHeight="0.0" prefWidth="374.0" style="-fx-background-color: ligthblue;">
          <effect>
             <MotionBlur angle="16.94" radius="7.04" />
          </effect>
       </Separator>
-      <Label fx:id="lblDNI" layoutX="59.0" layoutY="113.0" prefHeight="23.0" prefWidth="82.0" text="DNI">
-         <font>
-            <Font name="Arial Nova Light" size="26.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblPass" layoutX="59.0" layoutY="168.0" prefHeight="33.0" prefWidth="173.0" text="PASSWORD">
-         <font>
-            <Font name="Arial Nova Light" size="26.0" />
-         </font>
-      </Label>
-      <PasswordField fx:id="txtPass" layoutX="311.0" layoutY="178.0" prefHeight="25.0" prefWidth="156.0" />
-      <TextField fx:id="txtDni" layoutX="311.0" layoutY="113.0" prefHeight="25.0" prefWidth="156.0" />
-      <Button fx:id="botonIniciar" layoutX="51.0" layoutY="247.0" mnemonicParsing="false" onAction="#inicioSesion" prefHeight="25.0" prefWidth="156.0" text="Iniciar" />
-      <Button fx:id="botonRegistro" layoutX="309.0" layoutY="247.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="25.0" prefWidth="164.0" text="Registrarse" />
-      <ImageView fx:id="imgLog" fitHeight="25.0" fitWidth="37.0" layoutX="226.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+      <Separator layoutX="275.0" orientation="VERTICAL" prefHeight="378.0" prefWidth="13.0" />
+      <ImageView fx:id="imagenPortada" fitHeight="434.0" fitWidth="330.0" layoutX="-14.0" pickOnBounds="true">
          <image>
-            <Image url="file:/D:/DAM/Acceso%20a%20datos/Practicas/TallerJavaFX/src/main/java/imagenes/icono1.jpg" />
+            <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/portada.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="imgPass" fitHeight="25.0" fitWidth="37.0" layoutX="223.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="file:/D:/DAM/Acceso%20a%20datos/Practicas/TallerJavaFX/src/main/java/imagenes/llave.png" />
-         </image>
-      </ImageView>
+      <Pane fx:id="panelLogin" layoutX="360.0" layoutY="110.0" prefHeight="252.0" prefWidth="293.0" style="-fx-border-style: solid; -fx-border-radius: 5; -fx-background-color: #E7FAFF;">
+         <children>
+            <Label fx:id="lblDNI" layoutX="13.0" layoutY="45.0" prefHeight="16.0" prefWidth="37.0" text="DNI">
+               <font>
+                  <Font name="Arial Nova Light" size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPass" layoutX="13.0" layoutY="110.0" prefHeight="26.0" prefWidth="85.0" text="PASSWORD">
+               <font>
+                  <Font name="Arial Nova Light" size="14.0" />
+               </font>
+            </Label>
+            <PasswordField fx:id="txtPass" layoutX="151.0" layoutY="102.0" prefHeight="26.0" prefWidth="118.0" />
+            <TextField fx:id="txtDni" layoutX="151.0" layoutY="35.0" prefHeight="26.0" prefWidth="118.0" />
+            <Button fx:id="botonIniciar" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#inicioSesion" prefHeight="33.0" prefWidth="100.0" text="Iniciar" textFill="WHITE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <Button fx:id="botonRegistro" layoutX="169.0" layoutY="166.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="33.0" prefWidth="100.0" text="Registrarse" textFill="WHITE">
+               <effect>
+                  <Blend />
+               </effect>
+            </Button>
+            <ImageView fx:id="imgLog" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/icono1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgPass" fitHeight="18.0" fitWidth="13.0" layoutX="113.0" layoutY="116.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/llave.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

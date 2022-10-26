@@ -21,6 +21,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.CRUD_Usuarios;
@@ -53,7 +54,10 @@ public class LoginController implements Initializable {
     private Label lblDNI, lblPass;
     
     @FXML
-    private ImageView imgLog, imgPass;
+    private Pane panelLogin;
+    
+    @FXML
+    private ImageView imgLog, imgPass,imagenPortada;
     
 
     //Este boton va a llevarnos a la pantalla de registro
