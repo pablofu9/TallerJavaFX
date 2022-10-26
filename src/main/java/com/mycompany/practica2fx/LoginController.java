@@ -9,15 +9,21 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.CRUD_Usuarios;
 import modelo.Comprobaciones;
 import static modelo.Conexion.getConexion;
+import modelo.VariablesLogin;
 
 /**
  * FXML Controller class
@@ -25,7 +31,7 @@ import static modelo.Conexion.getConexion;
  * @author furu9
  */
 public class LoginController implements Initializable {
-    
+
     Connection con = getConexion();
     /**
      * Initializes the controller class.
@@ -33,16 +39,16 @@ public class LoginController implements Initializable {
     String contra;
     @FXML
     private Button botonIniciar, botonRegistro;
-    
+
     @FXML
     private TextField txtDni;
-    
+
     @FXML
     private PasswordField txtPass;
-    
+
     @FXML
     private Label lblDNI, lblPass;
-    
+
     //Este boton va a llevarnos a la pantalla de registro
     @FXML
     private void registrarse() throws IOException {
@@ -54,33 +60,39 @@ public class LoginController implements Initializable {
     private void inicioSesion() throws IOException {
 
         //Si alguno de los dos campos esta vacio, te salta un warning de que no pueden estar vacios
-        if (txtDni.getText().isEmpty() || txtPass.getText().isEmpty())
-        {
+        if (txtDni.getText().isEmpty() || txtPass.getText().isEmpty()) {
             Comprobaciones.crearAlertaError("Introduce tus credenciales de acceso");
-        } else
-        {
+        } else {
             //Guardamos la contraseña en una variable para comprobar el login
             contra = CRUD_Usuarios.buscarUsuario(con, txtDni.getText());
             //Si no encuentra el dni, la variable contraseña sera null, comprobamos con un if
-            if (contra != null)
-            {
-                if (contra.equals(txtPass.getText()))
-                {
-                    
+            if (contra != null) {
+                if (contra.equals(txtPass.getText())) {
+
                     Comprobaciones.crearAlertaInfo("Login correcto");
-                    App.setRoot("Menu");
-                } else
-                {
-                   Comprobaciones.crearAlertaError("Contraseña incorrecta");
+                    
+                    //Abrimos la venatana de menu
+                    Stage stage = new Stage();
+                    Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
+                    Scene scene = new Scene(root);
+                    stage = new Stage(StageStyle.DECORATED);
+                    stage.setScene(scene);
+                    stage.show();
+                    //Para cerrar el login
+                    Stage loginStage = (Stage) this.botonIniciar.getScene().getWindow();
+                    loginStage.close();
+
+                } else {
+                    Comprobaciones.crearAlertaError("Contraseña incorrecta");
                 }
             }
         }
-        
+
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
     }
-    
+
 }

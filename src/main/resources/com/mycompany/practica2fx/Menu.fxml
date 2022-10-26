@@ -5,10 +5,12 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
    <children>
       <Label layoutX="249.0" layoutY="25.0" text="VEHÍCULOS">
          <font>
@@ -29,10 +31,15 @@
             <TableColumn fx:id="cTipo" minWidth="4.0" prefWidth="70.0" text="Tipo" />
         </columns>
       </TableView>
-      <Label fx:id="lblUser" layoutX="462.0" layoutY="17.0" prefHeight="25.0" prefWidth="82.0">
+      <Label fx:id="lblUser" layoutX="462.0" layoutY="6.0" prefHeight="25.0" prefWidth="82.0">
          <font>
             <Font size="16.0" />
          </font>
       </Label>
+      <ImageView fx:id="imgIcono" fitHeight="24.0" fitWidth="27.0" layoutX="540.0" layoutY="9.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../icono1.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

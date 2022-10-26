@@ -15,11 +15,9 @@ public class Comprobaciones {
     //Comprobamos formato de deni
     public static boolean dniCorrecto(String dni) {
 
-        if (dni.length() == 9 && dni.substring(0, 7).matches("[0-9]*") && Character.isLetter(dni.charAt(8)))
-        {
+        if (dni.length() == 9 && dni.substring(0, 7).matches("[0-9]*") && Character.isLetter(dni.charAt(8))) {
             return true;
-        } else
-        {
+        } else {
             return false;
 
         }
@@ -33,6 +31,7 @@ public class Comprobaciones {
         alert.setContentText(textoAlerta);
         alert.showAndWait();
     }
+
     public static void crearAlertaInfo(String textoAlerta) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setHeaderText(null);
@@ -40,4 +39,6 @@ public class Comprobaciones {
         alert.setContentText(textoAlerta);
         alert.showAndWait();
     }
+    
+    
 }

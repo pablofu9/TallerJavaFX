@@ -9,9 +9,12 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
+import modelo.VariablesLogin;
 
 /**
  * FXML Controller class
@@ -23,20 +26,23 @@ public class MenuController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    
     @FXML
     private Button btnAlta, btnModificar, btnEliminar;
-    
+
     @FXML
     private TableView tablaVehiculos;
     @FXML
-    private TableColumn cMatricula, cMarca, cModelo,cPeso,cCilindrada,cTipo;
-    
-    
-    
+    private TableColumn cMatricula, cMarca, cModelo, cPeso, cCilindrada, cTipo;
+    @FXML
+    private Label lblUser;
+
+    @FXML
+    private ImageView imgIcono;
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }    
-    
+        lblUser.setText( VariablesLogin.getNombreUser());
+        imgIcono.setVisible(true);
+    }
+
 }

@@ -61,12 +61,14 @@ public class CRUD_Usuarios {
                 encontrado = true;
 
                 u.setPassword(rs.getString("password"));
+                u.setNombre(rs.getString("nombre"));
 
             }
             if (encontrado)
             {
-
+                VariablesLogin.nombreUser=u.getNombre();
                 Comprobaciones.crearAlertaInfo("Usuario encontrado");
+                
             } else
             {
                 Comprobaciones.crearAlertaInfo("Usuario no encontrado");
@@ -77,5 +79,7 @@ public class CRUD_Usuarios {
 
         }
         return u.getPassword();
+        
+        
     }
 }
