@@ -73,6 +73,7 @@ public class LoginController implements Initializable {
                     
                     //Abrimos la venatana de menu
                     Stage stage = new Stage();
+                    
                     Parent root = FXMLLoader.load(getClass().getResource("Menu.fxml"));
                     Scene scene = new Scene(root);
                     stage = new Stage(StageStyle.DECORATED);

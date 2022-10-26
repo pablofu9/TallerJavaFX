@@ -13,6 +13,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import modelo.VariablesLogin;
 
@@ -43,6 +44,7 @@ public class MenuController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         lblUser.setText( VariablesLogin.getNombreUser());
         imgIcono.setVisible(true);
+       
     }
 
 }
