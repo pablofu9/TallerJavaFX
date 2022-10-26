@@ -38,7 +38,7 @@ public class CRUD_Coche {
             ps1 = con.prepareStatement(sqlCoche);
 
             ps1.setString(1, v1.getMatricula());
-
+            
             Comprobaciones.crearAlertaInfo("Vehiculo creado (Insertado en ambas tablas)");
         } catch (SQLException e)
         {
@@ -46,4 +46,5 @@ public class CRUD_Coche {
         }
 
     }
+     
 }
