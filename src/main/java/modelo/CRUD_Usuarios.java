@@ -17,7 +17,7 @@ import javafx.scene.control.Alert;
 public class CRUD_Usuarios {
 
     public static void insertarUsuario(Connection con, Usuarios user) {
-
+        boolean valido=false;
         PreparedStatement ps;
         String sql;
 
@@ -30,12 +30,12 @@ public class CRUD_Usuarios {
             ps.setString(3, user.getDni());
             ps.setString(4, user.getPassword());
             ps.executeUpdate();
-
+            valido=true;
             Comprobaciones.crearAlertaInfo("Usuario insertado con exito");
-
+            
             //Salta la exception si encuentra un usuario con ese mismo dni
         } catch (SQLException e) {
-
+            valido=false;
             Comprobaciones.crearAlertaError("Ya existe un usuario registrado con ese DNI");
         }
 

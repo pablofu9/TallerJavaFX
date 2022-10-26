@@ -39,8 +39,9 @@ public class RegistroController implements Initializable {
 
     @FXML
     private Button btnRegistro, btnVolver;
-
-    @FXML //Boton para volver a la pantalla de login
+    
+     //Boton para volver a la pantalla de login
+    @FXML
     private void volver() throws IOException {
         Stage stage = new Stage();
 
@@ -65,18 +66,6 @@ public class RegistroController implements Initializable {
             if (Comprobaciones.dniCorrecto(registroDni.getText())) {
                 Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
                 CRUD_Usuarios.insertarUsuario(con, user1);
-                
-                //Si el registro es correcto, volvemos al login para que el usuario acceda
-                Stage stage = new Stage();
-                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
-                Scene scene = new Scene(root);
-                stage = new Stage(StageStyle.DECORATED);
-                stage.setTitle("Introduce tus credenciales de acceso");
-                stage.setScene(scene);
-                stage.show();
-                //Para cerrar el registro
-                Stage loginStage = (Stage) this.btnRegistro.getScene().getWindow();
-                loginStage.close();
             } else {
                 Comprobaciones.crearAlertaError("Formato incorrecto");
             }
