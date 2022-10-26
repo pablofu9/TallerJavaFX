@@ -100,6 +100,9 @@ public class LoginController implements Initializable {
                 } else {
                     Comprobaciones.crearAlertaError("Contraseña incorrecta");
                 }
+                
+            }else{
+                Comprobaciones.crearAlertaError("Credenciales de acceso incorrectas");
             }
         }
 
