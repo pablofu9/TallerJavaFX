@@ -6,17 +6,19 @@
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.MotionBlur?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="381.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.LoginController">
+<AnchorPane id="AnchorPane" prefHeight="396.0" prefWidth="591.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.LoginController">
    <children>
       <Label layoutX="51.0" layoutY="27.0" prefHeight="33.0" prefWidth="228.0" text="Vamos a logearnos !!">
          <font>
             <Font name="Bell MT" size="24.0" />
          </font>
       </Label>
-      <Separator layoutY="79.0" prefHeight="0.0" prefWidth="667.0">
+      <Separator layoutY="79.0" prefHeight="3.0" prefWidth="590.0">
          <effect>
             <MotionBlur angle="16.94" radius="7.04" />
          </effect>
@@ -35,5 +37,15 @@
       <TextField fx:id="txtDni" layoutX="311.0" layoutY="113.0" prefHeight="25.0" prefWidth="156.0" />
       <Button fx:id="botonIniciar" layoutX="51.0" layoutY="247.0" mnemonicParsing="false" onAction="#inicioSesion" prefHeight="25.0" prefWidth="156.0" text="Iniciar" />
       <Button fx:id="botonRegistro" layoutX="309.0" layoutY="247.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="25.0" prefWidth="164.0" text="Registrarse" />
+      <ImageView fx:id="imgLog" fitHeight="25.0" fitWidth="37.0" layoutX="226.0" layoutY="120.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/D:/DAM/Acceso%20a%20datos/Practicas/TallerJavaFX/src/main/java/imagenes/icono1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="imgPass" fitHeight="25.0" fitWidth="37.0" layoutX="223.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="file:/D:/DAM/Acceso%20a%20datos/Practicas/TallerJavaFX/src/main/java/imagenes/llave.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>
