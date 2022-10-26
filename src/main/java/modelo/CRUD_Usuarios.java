@@ -21,8 +21,7 @@ public class CRUD_Usuarios {
         PreparedStatement ps;
         String sql;
 
-        try
-        {
+        try {
 
             sql = "insert into usuario(nombre, apellido, dni,password) values(?,?,?,?)";
             ps = con.prepareStatement(sql);
@@ -35,8 +34,7 @@ public class CRUD_Usuarios {
             Comprobaciones.crearAlertaInfo("Usuario insertado con exito");
 
             //Salta la exception si encuentra un usuario con ese mismo dni
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
 
             Comprobaciones.crearAlertaError("Ya existe un usuario registrado con ese DNI");
         }
@@ -49,37 +47,29 @@ public class CRUD_Usuarios {
         ResultSet rs;
         boolean encontrado = false;
         Usuarios u = new Usuarios();
-        try
-        {
+        try {
             String SQL = "SELECT * FROM usuario WHERE dni = ? ;";
             ps = (PreparedStatement) conexion.prepareStatement(SQL, ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ps.setString(1, dni);
             rs = ps.executeQuery();
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 encontrado = true;
 
                 u.setPassword(rs.getString("password"));
                 u.setNombre(rs.getString("nombre"));
 
             }
-            if (encontrado)
-            {
-                VariablesLogin.nombreUser=u.getNombre();
-                Comprobaciones.crearAlertaInfo("Usuario encontrado");
-                
-            } else
-            {
-                Comprobaciones.crearAlertaInfo("Usuario no encontrado");
+            if (encontrado) {
+                VariablesLogin.nombreUser = u.getNombre();
+
+            } else {
 
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
 
         }
         return u.getPassword();
-        
-        
+
     }
 }

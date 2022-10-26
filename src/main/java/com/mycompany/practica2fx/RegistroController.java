@@ -9,10 +9,15 @@ import java.net.URL;
 import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import modelo.CRUD_Usuarios;
 import modelo.Comprobaciones;
 import modelo.Conexion;
@@ -37,25 +42,42 @@ public class RegistroController implements Initializable {
 
     @FXML //Boton para volver a la pantalla de login
     private void volver() throws IOException {
-        App.setRoot("Login");
+        Stage stage = new Stage();
+
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(root);
+        stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
+        //Para cerrar el form de registro
+        Stage loginStage = (Stage) this.btnVolver.getScene().getWindow();
+        loginStage.close();
     }
 
     //Boton para registrarte
     @FXML
-    private void registrarUser() {
+    private void registrarUser() throws IOException {
         //Esto nos va a sacar una alerta de un error si dejas algun campo vacio
-        if (registroNombre.getText().isEmpty() || registroApellido.getText().isEmpty() || registroDni.getText().isEmpty() || registroPass.getText().isEmpty())
-        {
+        if (registroNombre.getText().isEmpty() || registroApellido.getText().isEmpty() || registroDni.getText().isEmpty() || registroPass.getText().isEmpty()) {
             Comprobaciones.crearAlertaError("Debes rellenar todos los campos");
-        } else
-        {
+        } else {
             //Si los campos estan rellenos, comprueba el formato de dni
-            if (Comprobaciones.dniCorrecto(registroDni.getText()))
-            {
+            if (Comprobaciones.dniCorrecto(registroDni.getText())) {
                 Usuarios user1 = new Usuarios(registroNombre.getText(), registroApellido.getText(), registroDni.getText(), registroPass.getText());
                 CRUD_Usuarios.insertarUsuario(con, user1);
-            } else
-            {
+                
+                //Si el registro es correcto, volvemos al login para que el usuario acceda
+                Stage stage = new Stage();
+                Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+                Scene scene = new Scene(root);
+                stage = new Stage(StageStyle.DECORATED);
+                stage.setTitle("Introduce tus credenciales de acceso");
+                stage.setScene(scene);
+                stage.show();
+                //Para cerrar el registro
+                Stage loginStage = (Stage) this.btnRegistro.getScene().getWindow();
+                loginStage.close();
+            } else {
                 Comprobaciones.crearAlertaError("Formato incorrecto");
             }
 
