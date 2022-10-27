@@ -1,0 +1,20 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : 27 oct 2022, 13:29:38
+    Author     : furu9
+*/
+
+.button{
+    -fx-background-color:#0276FF;
+    -fx-border-style: solid;
+    -fx-border-radius: 5px;
+    
+    
+}
+
+.button:hover{
+    -fx-background-color: #1C84FF;
+}
