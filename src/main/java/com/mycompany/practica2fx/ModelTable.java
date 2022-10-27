@@ -13,16 +13,18 @@ class ModelTable {
     String matricula;
     String marca;
     String modelo;
-    int cilindrada;
-    int peso;
+    String peso;
+    String cilindrada;
+    
     
 
-    public ModelTable(String matricula, String marca, String modelo, int cilindrada, int peso) {
+    public ModelTable(String matricula, String marca, String modelo, String peso,String cilindrada) {
         this.matricula = matricula;
         this.marca = marca;
         this.modelo = modelo;
-        this.cilindrada = cilindrada;
         this.peso = peso;
+        this.cilindrada = cilindrada;
+        
         
     }
 
@@ -50,19 +52,19 @@ class ModelTable {
         this.modelo = modelo;
     }
 
-    public int getCilindrada() {
+    public String getCilindrada() {
         return cilindrada;
     }
 
-    public void setCilindrada(int cilindrada) {
+    public void setCilindrada(String cilindrada) {
         this.cilindrada = cilindrada;
     }
 
-    public int getPeso() {
+    public String getPeso() {
         return peso;
     }
 
-    public void setPeso(int peso) {
+    public void setPeso(String peso) {
         this.peso = peso;
     }
 

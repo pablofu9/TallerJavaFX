@@ -37,7 +37,9 @@ import javafx.stage.StageStyle;
 import modelo.CRUD_Coche;
 import modelo.Comprobaciones;
 import modelo.Conexion;
+import static modelo.Conexion.getConexion;
 import modelo.VariablesLogin;
+import modelo.Vehiculo;
 
 /**
  * FXML Controller class
@@ -53,23 +55,25 @@ public class MenuController implements Initializable {
     private Button btnAlta, btnModificar, btnEliminar;
 
     @FXML
-    private TableView<ModelTable> tablaVehiculos;
+    private TableView<Vehiculo> tablaVehiculos;
     @FXML
-    private TableColumn<ModelTable, String> cMatricula;
+    private TableColumn<Vehiculo, String> cMatricula;
     @FXML
-    private TableColumn<ModelTable, String>  cMarca;
+    private TableColumn<Vehiculo, String> cMarca;
     @FXML
-    private TableColumn<ModelTable, String> cModelo;
+    private TableColumn<Vehiculo, String> cModelo;
     @FXML
-    private TableColumn<ModelTable, String> cPeso;
+    private TableColumn<Vehiculo, String> cPeso;
     @FXML
-    private TableColumn<ModelTable, String> cCilindrada;
+    private TableColumn<Vehiculo, String> cCilindrada;
 
     @FXML
     private MenuButton menuUser;
 
     @FXML
     private MenuItem verPerfil, salirPerfil;
+    
+    ObservableList<Vehiculo> oblist = FXCollections.observableArrayList();
 
     //PARA AÑADIR UN NUEVO VEHICULO
     @FXML
@@ -99,32 +103,34 @@ public class MenuController implements Initializable {
         Stage loginStage = (Stage) this.menuUser.getScene().getWindow();
         loginStage.close();
     }
-    ObservableList<ModelTable> oblist = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        Connection con = Conexion.getConexion();
+        
+
+        Connection con = getConexion();
         menuUser.setText(VariablesLogin.getNombreUser());
 
-        try
-        {
-            
-            String sentenciaSql = "SELECT * FROM vehiculo";
-            PreparedStatement sentencia = null;
-            ResultSet rs = null;
-            sentencia = con.prepareStatement(sentenciaSql);
-            rs = sentencia.executeQuery();
-            while(rs.next()){
-                oblist.add(new ModelTable(rs.getString(1), rs.getString(2),rs.getString(3),rs.getInt(4),rs.getInt(5)));
-            }
-        }catch(SQLException ex){
-            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE,null,ex);
-        }
-        cMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
         cMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
         cModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
         cPeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
         cCilindrada.setCellValueFactory(new PropertyValueFactory<>("cilindrada"));
+        cMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
+
+        try
+        {
+
+            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM vehiculo");
+            while (rs.next())
+            {
+                oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
+                        Integer.parseInt(rs.getString("peso")) ,Integer.parseInt(rs.getString("cilindrada")), rs.getString("matricula")));
+                tablaVehiculos.setItems(oblist);
+            }
+        } catch (SQLException ex)
+        {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 
