@@ -123,9 +123,10 @@ public class MenuController implements Initializable {
             ResultSet rs = con.createStatement().executeQuery("SELECT * FROM vehiculo");
             while (rs.next())
             {
-                oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
-                        Integer.parseInt(rs.getString("peso")) ,Integer.parseInt(rs.getString("cilindrada")), rs.getString("matricula")));
+                /*oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
+                        rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
                 tablaVehiculos.setItems(oblist);
+*/
             }
         } catch (SQLException ex)
         {
