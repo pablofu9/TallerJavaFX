@@ -20,7 +20,7 @@
             <Font name="Bell MT" size="36.0" />
          </font>
       </Label>
-      <Separator layoutX="319.0" layoutY="83.0" prefHeight="0.0" prefWidth="374.0" style="-fx-background-color: ligthblue;">
+      <Separator layoutX="319.0" layoutY="83.0" prefHeight="0.0" prefWidth="374.0">
          <effect>
             <MotionBlur angle="16.94" radius="7.04" />
          </effect>
@@ -31,7 +31,7 @@
             <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/portada.png" />
          </image>
       </ImageView>
-      <Pane fx:id="panelLogin" layoutX="360.0" layoutY="110.0" prefHeight="252.0" prefWidth="293.0" style="-fx-border-style: solid; -fx-border-radius: 5; -fx-background-color: #E7FAFF;">
+      <Pane fx:id="panelLogin" layoutX="360.0" layoutY="110.0" prefHeight="252.0" prefWidth="293.0" style="-fx-border-style: solid; -fx-border-radius: 5;">
          <children>
             <Label fx:id="lblDNI" layoutX="13.0" layoutY="45.0" prefHeight="16.0" prefWidth="37.0" text="DNI">
                <font>
@@ -45,16 +45,14 @@
             </Label>
             <PasswordField fx:id="txtPass" layoutX="151.0" layoutY="102.0" prefHeight="26.0" prefWidth="118.0" />
             <TextField fx:id="txtDni" layoutX="151.0" layoutY="35.0" prefHeight="26.0" prefWidth="118.0" />
-            <Button fx:id="botonIniciar" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#inicioSesion" prefHeight="33.0" prefWidth="100.0" text="Iniciar" textFill="WHITE">
+            <Button fx:id="botonIniciar" layoutX="13.0" layoutY="166.0" mnemonicParsing="false" onAction="#inicioSesion" prefHeight="33.0" prefWidth="100.0" style="-fx-background-color: blue;" text="Iniciar" textFill="WHITE">
                <effect>
                   <Blend />
-               </effect>
-            </Button>
-            <Button fx:id="botonRegistro" layoutX="169.0" layoutY="166.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="33.0" prefWidth="100.0" text="Registrarse" textFill="WHITE">
+               </effect></Button>
+            <Button fx:id="botonRegistro" layoutX="169.0" layoutY="166.0" mnemonicParsing="false" onAction="#registrarse" prefHeight="33.0" prefWidth="100.0" style="-fx-background-color: blue;" text="Registrarse" textFill="WHITE">
                <effect>
                   <Blend />
-               </effect>
-            </Button>
+               </effect></Button>
             <ImageView fx:id="imgLog" fitHeight="18.0" fitWidth="18.0" layoutX="113.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/icono1.jpg" />
