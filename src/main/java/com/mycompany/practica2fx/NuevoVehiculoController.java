@@ -16,6 +16,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -46,6 +48,12 @@ public class NuevoVehiculoController implements Initializable {
 
     @FXML
     private ComboBox cmbTipo;
+    
+    @FXML
+    private MenuButton menuUserNuevoVehiculo;
+    
+    @FXML
+    private MenuItem verPerfilNuevo, salirPerfilNuevo;
 
     /*
     @FXML
@@ -85,11 +93,22 @@ public class NuevoVehiculoController implements Initializable {
         }
     }
 
-    @FXML
+    @FXML  
+    private void menuUserNuevoVehiculoExit() throws IOException {
+        Stage stage = new Stage();
+        Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
+        Scene scene = new Scene(root);
+        stage = new Stage(StageStyle.DECORATED);
+        stage.setScene(scene);
+        stage.show();
 
+        Stage loginStage = (Stage) this.menuUserNuevoVehiculo.getScene().getWindow();
+        loginStage.close();
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        lblUser.setText(VariablesLogin.getNombreUser());
+       menuUserNuevoVehiculo.setText(VariablesLogin.getNombreUser());
         cmbTipo.getItems().add("Coche");
         cmbTipo.getItems().add("Moto");
 
