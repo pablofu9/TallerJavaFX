@@ -120,5 +120,10 @@
             <MenuItem fx:id="salirPerfilNuevo" mnemonicParsing="false" onAction="#menuUserNuevoVehiculoExit" text="Salir" />
          </items>
       </MenuButton>
+      <Button fx:id="agregarCoche" layoutX="155.0" layoutY="374.0" mnemonicParsing="false" onAction="#agregarCocheOnClick" text="Añadir" textFill="WHITE">
+         <font>
+            <Font name="Bell MT Bold" size="16.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

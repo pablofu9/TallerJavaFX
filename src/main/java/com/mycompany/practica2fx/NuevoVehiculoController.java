@@ -22,6 +22,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import modelo.CRUD_Coche;
+import modelo.Coche;
+import modelo.Comprobaciones;
+import modelo.Moto;
 import modelo.VariablesLogin;
 
 /**
@@ -41,7 +45,7 @@ public class NuevoVehiculoController implements Initializable {
     private Label lblUser;
 
     @FXML
-    private Button volverMenu;
+    private Button volverMenu,agregarCoche;
 
     @FXML
     private Pane panelMoto, panelCoche,panelUserNuevoVehiculo;
@@ -55,10 +59,10 @@ public class NuevoVehiculoController implements Initializable {
     @FXML
     private MenuItem verPerfilNuevo, salirPerfilNuevo;
 
-    /*
+    
     @FXML
-    private CheckBox checkManguitos, checkSuspension, checkAsientos, checkAsientos, checkAire;
-     */
+    private CheckBox checkManguitos, checkSuspension, checkAsientos, checkTecho, checkAire;
+     
     //OnClick del boton para volver atras
     @FXML
     private void volverMenuOnClick() throws IOException {
@@ -93,6 +97,33 @@ public class NuevoVehiculoController implements Initializable {
         }
     }
 
+    @FXML
+    private void agregarCocheOnClick(){
+        String marca = txtMarca.getText();
+        String modelo = txtModelo.getText();
+        int peso = Integer.parseInt(txtPeso.getText());
+        int cilindrada = Integer.parseInt(txtCilindrada.getText());
+        String matricula = txtMatricula.getText();
+                
+        int sel = cmbTipo.getSelectionModel().getSelectedIndex();
+                
+        switch (sel) {
+            case 0: CRUD_Coche.insertarVehiculo(new Coche(
+                        checkAsientos.isSelected(),
+                        checkAire.isSelected(),
+                        checkTecho.isSelected(),
+                        marca, modelo, peso, cilindrada, matricula));
+                break;
+            case 1: CRUD_Coche.insertarVehiculo(new Moto(
+                        checkManguitos.isSelected(),
+                        checkSuspension.isSelected(),
+                        marca, modelo, peso, cilindrada, matricula));
+                break;
+            default:
+                Comprobaciones.crearAlertaError("Debe seleccionar el tipo de vehículo");
+                break;
+        }
+    }
     @FXML  
     private void menuUserNuevoVehiculoExit() throws IOException {
         Stage stage = new Stage();
