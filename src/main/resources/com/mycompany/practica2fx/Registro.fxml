@@ -4,33 +4,40 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="401.0" prefWidth="507.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.RegistroController">
+<AnchorPane id="AnchorPane" prefHeight="313.0" prefWidth="531.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.RegistroController">
    <children>
-      <Label layoutX="200.0" layoutY="23.0" text="REGISTRO">
+      <ImageView fitHeight="340.0" fitWidth="542.0" layoutX="-1.0" layoutY="-1.0" pickOnBounds="true">
+         <image>
+            <Image url="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/imagenes/fondoRegistro.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="224.0" layoutY="21.0" text="REGISTRO" textFill="WHITE">
          <font>
             <Font name="Calibri Bold Italic" size="21.0" />
          </font>
       </Label>
       <Separator layoutY="60.0" prefHeight="0.0" prefWidth="531.0" />
-      <Label layoutX="63.0" layoutY="101.0" text="DNI">
+      <Label layoutX="63.0" layoutY="101.0" text="DNI" textFill="WHITE">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="216.0" text="Contraseña">
+      <Label layoutX="63.0" layoutY="216.0" text="Contraseña" textFill="WHITE">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="63.0" layoutY="178.0" text="Apellido">
+      <Label layoutX="63.0" layoutY="178.0" text="Apellido" textFill="WHITE">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
       </Label>
-      <Label layoutX="64.0" layoutY="141.0" text="Nombre">
+      <Label layoutX="64.0" layoutY="141.0" text="Nombre" textFill="WHITE">
          <font>
             <Font name="Cambria" size="18.0" />
          </font>
