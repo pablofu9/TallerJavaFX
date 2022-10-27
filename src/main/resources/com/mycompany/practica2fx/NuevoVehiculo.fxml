@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="378.0" prefWidth="670.0" stylesheets="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/estilos/estiloNuevoVehiculo.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.NuevoVehiculoController">
+<AnchorPane id="AnchorPane" prefHeight="378.0" prefWidth="670.0" stylesheets="@../../../estilos/estiloNuevoVehiculo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.NuevoVehiculoController">
    <children>
       <Label layoutX="64.0" layoutY="67.0" text="Matricula">
          <font>
