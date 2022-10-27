@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="file:/C:/DAM/ACCESO%20A%20DATOS/Proyectos/Practica2FX/src/main/java/estilos/estiloBtnMenu.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mycompany.practica2fx.MenuController">
    <children>
       <Label layoutX="249.0" layoutY="25.0" text="VEHÍCULOS">
          <font>
@@ -22,9 +22,9 @@
          </font>
       </Label>
       <Separator layoutY="63.0" prefHeight="7.0" prefWidth="601.0" />
-      <Button fx:id="btnAlta" layoutX="17.0" layoutY="324.0" mnemonicParsing="false" onAction="#altaVehiculo" prefHeight="25.0" prefWidth="93.0" text="Alta vehiculo" />
-      <Button fx:id="btnEliminar" layoutX="476.0" layoutY="324.0" mnemonicParsing="false" text="Eliminar vehiculo" />
-      <Button fx:id="btnModificar" layoutX="240.0" layoutY="324.0" mnemonicParsing="false" text="Modificar vehiculo" />
+      <Button id="btnAlta" fx:id="btnAlta" layoutX="17.0" layoutY="324.0" mnemonicParsing="false" onAction="#altaVehiculo" prefHeight="41.0" prefWidth="127.0" text="Alta vehiculo" textFill="WHITE" />
+      <Button fx:id="btnEliminar" layoutX="453.0" layoutY="324.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="127.0" text="Eliminar vehiculo" textFill="WHITE" />
+      <Button fx:id="btnModificar" layoutX="230.0" layoutY="324.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="127.0" text="Modificar vehiculo" textFill="WHITE" />
       <TableView fx:id="tablaVehiculos" layoutX="17.0" layoutY="77.0" prefHeight="200.0" prefWidth="567.0">
         <columns>
           <TableColumn fx:id="cMatricula" prefWidth="91.0" text="Matricula" />
@@ -35,7 +35,7 @@
             <TableColumn fx:id="cTipo" minWidth="4.0" prefWidth="70.0" text="Tipo" />
         </columns>
       </TableView>
-      <Pane layoutX="456.0" layoutY="22.0" prefHeight="33.0" prefWidth="114.0" style="-fx-border-radius: 10; -fx-border-style: solid;">
+      <Pane fx:id="panelSesion" layoutX="456.0" layoutY="22.0" prefHeight="33.0" prefWidth="114.0">
          <children>
             <Label fx:id="lblUser" layoutX="10.0" layoutY="3.0" prefHeight="25.0" prefWidth="76.0">
                <font>

@@ -64,7 +64,6 @@ public class LoginController implements Initializable {
     @FXML
     private void registrarse() throws IOException {
         Stage stage = new Stage();
-
         Parent root = FXMLLoader.load(getClass().getResource("Registro.fxml"));
         Scene scene = new Scene(root);
         stage = new Stage(StageStyle.DECORATED);

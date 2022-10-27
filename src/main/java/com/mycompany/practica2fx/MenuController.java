@@ -20,6 +20,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import modelo.VariablesLogin;
@@ -46,6 +47,9 @@ public class MenuController implements Initializable {
 
     @FXML
     private ImageView imgIcono;
+    
+    @FXML
+    private Pane panelSesion;
 
     //Para ir a la pantalla donde se crean los vehículos
     @FXML
