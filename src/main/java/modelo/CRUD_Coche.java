@@ -6,6 +6,7 @@ package modelo;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -47,11 +48,11 @@ public class CRUD_Coche {
             }
 
             con.commit();
-            Comprobaciones.crearAlertaInfo("Vehiculo creado (Insertado en ambas tablas)");
+            Comprobaciones.crearAlertaInfo("Vehiculo creado");
 
         } catch (SQLException e)
         {
-            Comprobaciones.crearAlertaError("Error de conexion");
+            Comprobaciones.crearAlertaError("Matricula ya existente en el sistema");
         }
 
     }
@@ -63,7 +64,7 @@ public class CRUD_Coche {
         Connection con = Conexion.getConexion();
 
         //Introduce en la tabla coche
-        sqlCoche = "insert into coche(Matricula, asientosCalefactables, aire, techoSolar) values(?,?,?,?)";
+        sqlCoche = "insert into coche(Matricula, asientosCalefactables,aire, techoSolar) values(?,?,?,?)";
         try
         {
             ps1 = con.prepareStatement(sqlCoche);
@@ -86,7 +87,7 @@ public class CRUD_Coche {
         Connection con = Conexion.getConexion();
 
         //Introduce en la tabla coche
-        sqlMoto = "insert into coche(Matricula, asientosCalefactables, aire, techoSolar) values(?,?,?,?)";
+        sqlMoto = "insert into moto(Matricula, mangCalefactables,suspensionRegulable) values(?,?,?)";
         try
         {
             ps1 = con.prepareStatement(sqlMoto);
@@ -102,4 +103,27 @@ public class CRUD_Coche {
         }
     }
 
+    public static void verCoches() {
+        Connection con = Conexion.getConexion();
+        String sentenciaSql = "SELECT * FROM vehiculo";
+        PreparedStatement sentencia = null;
+        ResultSet resultado = null;
+        String matricula;
+        String marca;
+        try
+        {
+            sentencia = con.prepareStatement(sentenciaSql);
+            resultado = sentencia.executeQuery();
+            while (resultado.next())
+            {
+                matricula=resultado.getString(1);
+                marca=resultado.getString(2);
+            }
+        } catch (SQLException sqle)
+        {
+            sqle.printStackTrace();
+        
+        }
+
+    }
 }

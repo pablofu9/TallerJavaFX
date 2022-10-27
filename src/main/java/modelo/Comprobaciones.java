@@ -40,5 +40,11 @@ public class Comprobaciones {
         alert.showAndWait();
     }
     
-    
+    public static boolean matriculaCorrecta(String matricula){
+        if(matricula.length()==7 && matricula.substring(0,3).matches("[0-9]*") && matricula.substring(4,6).matches("[A-Z]*")){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }

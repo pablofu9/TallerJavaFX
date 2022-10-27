@@ -24,11 +24,10 @@
       <TableView fx:id="tablaVehiculos" layoutX="17.0" layoutY="77.0" prefHeight="200.0" prefWidth="567.0">
         <columns>
           <TableColumn fx:id="cMatricula" prefWidth="91.0" text="Matricula" />
-          <TableColumn fx:id="cMarca" prefWidth="92.0" text="Marca" />
-            <TableColumn fx:id="cModelo" prefWidth="98.0" text="Modelo" />
-            <TableColumn fx:id="cPeso" prefWidth="100.0" text="Peso" />
-            <TableColumn fx:id="cCilindrada" prefWidth="115.0" text="Cilindrada" />
-            <TableColumn fx:id="cTipo" minWidth="4.0" prefWidth="70.0" text="Tipo" />
+          <TableColumn fx:id="cMarca" prefWidth="161.0" text="Marca" />
+            <TableColumn fx:id="cModelo" prefWidth="149.0" text="Modelo" />
+            <TableColumn fx:id="cPeso" prefWidth="88.0" text="Peso" />
+            <TableColumn fx:id="cCilindrada" prefWidth="77.0" text="Cilindrada" />
         </columns>
       </TableView>
       <MenuButton fx:id="menuUser" layoutX="469.0" layoutY="25.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="72.0">

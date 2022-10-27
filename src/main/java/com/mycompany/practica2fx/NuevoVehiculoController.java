@@ -45,24 +45,23 @@ public class NuevoVehiculoController implements Initializable {
     private Label lblUser;
 
     @FXML
-    private Button volverMenu,agregarCoche;
+    private Button volverMenu, agregarCoche;
 
     @FXML
-    private Pane panelMoto, panelCoche,panelUserNuevoVehiculo;
+    private Pane panelMoto, panelCoche, panelUserNuevoVehiculo;
 
     @FXML
     private ComboBox cmbTipo;
-    
+
     @FXML
     private MenuButton menuUserNuevoVehiculo;
-    
+
     @FXML
     private MenuItem verPerfilNuevo, salirPerfilNuevo;
 
-    
     @FXML
     private CheckBox checkManguitos, checkSuspension, checkAsientos, checkTecho, checkAire;
-     
+
     //OnClick del boton para volver atras
     @FXML
     private void volverMenuOnClick() throws IOException {
@@ -98,33 +97,41 @@ public class NuevoVehiculoController implements Initializable {
     }
 
     @FXML
-    private void agregarCocheOnClick(){
+    private void agregarCocheOnClick() {
         String marca = txtMarca.getText();
         String modelo = txtModelo.getText();
         int peso = Integer.parseInt(txtPeso.getText());
         int cilindrada = Integer.parseInt(txtCilindrada.getText());
         String matricula = txtMatricula.getText();
-                
-        int sel = cmbTipo.getSelectionModel().getSelectedIndex();
-                
-        switch (sel) {
-            case 0: CRUD_Coche.insertarVehiculo(new Coche(
-                        checkAsientos.isSelected(),
-                        checkAire.isSelected(),
-                        checkTecho.isSelected(),
-                        marca, modelo, peso, cilindrada, matricula));
-                break;
-            case 1: CRUD_Coche.insertarVehiculo(new Moto(
-                        checkManguitos.isSelected(),
-                        checkSuspension.isSelected(),
-                        marca, modelo, peso, cilindrada, matricula));
-                break;
-            default:
-                Comprobaciones.crearAlertaError("Debe seleccionar el tipo de vehículo");
-                break;
+        if (Comprobaciones.matriculaCorrecta(matricula))
+        {
+            int sel = cmbTipo.getSelectionModel().getSelectedIndex();
+
+            switch (sel)
+            {
+                case 0:
+                    CRUD_Coche.insertarVehiculo(new Coche(
+                            checkAsientos.isSelected(),
+                            checkAire.isSelected(),
+                            checkTecho.isSelected(),
+                            marca, modelo, peso, cilindrada, matricula));
+                    break;
+                case 1:
+                    CRUD_Coche.insertarVehiculo(new Moto(
+                            checkManguitos.isSelected(),
+                            checkSuspension.isSelected(),
+                            marca, modelo, peso, cilindrada, matricula));
+                    break;
+                default:
+                    Comprobaciones.crearAlertaError("Debe seleccionar el tipo de vehículo");
+                    break;
+            }
+        }else{
+            Comprobaciones.crearAlertaError("El formato de matricula no es correcto");
         }
     }
-    @FXML  
+
+    @FXML
     private void menuUserNuevoVehiculoExit() throws IOException {
         Stage stage = new Stage();
         Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
@@ -136,12 +143,13 @@ public class NuevoVehiculoController implements Initializable {
         Stage loginStage = (Stage) this.menuUserNuevoVehiculo.getScene().getWindow();
         loginStage.close();
     }
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       menuUserNuevoVehiculo.setText(VariablesLogin.getNombreUser());
+        menuUserNuevoVehiculo.setText(VariablesLogin.getNombreUser());
         cmbTipo.getItems().add("Coche");
         cmbTipo.getItems().add("Moto");
+        
 
     }
 }
