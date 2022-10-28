@@ -123,6 +123,7 @@ public class MenuController implements Initializable {
         return oblist;
     }
 
+    //METODO PARA BORRAR LOS VEHICULOS DE LA TABLA
     public void borrarVehiculos() {
         Connection con = getConexion();
         getSelected();
@@ -137,10 +138,33 @@ public class MenuController implements Initializable {
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
+        
+        //BORRAR FROM COCHE
+        String sentenciaSql1 = "DELETE  from  coche WHERE matricula = ?";
+        PreparedStatement sentencia1 = null;
+        try {
+                sentencia1 = con.prepareStatement(sentenciaSql1);
+                sentencia1.setString(1,lblMatricula.getText());
+                sentencia1.execute();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+        //BORRAR FROM MOTO
+        String sentenciaSql2 = "DELETE  from  moto WHERE matricula = ?";
+        PreparedStatement sentencia2 = null;
+
+        try {
+                sentencia2 = con.prepareStatement(sentenciaSql2);
+                sentencia2.setString(1,lblMatricula.getText());
+                sentencia2.execute();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
 
     }
 
-    
+    //VEMOS QUE ITEM DE LA TABLA ESTA SELECCIONADO
     public void getSelected(){
         int index = tablaVehiculos.getSelectionModel().getSelectedIndex();
         if(index<=-1){
