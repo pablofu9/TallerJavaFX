@@ -121,6 +121,7 @@ public class NuevoVehiculoController implements Initializable {
                             checkManguitos.isSelected(),
                             checkSuspension.isSelected(),
                             marca, modelo, peso, cilindrada, matricula));
+                    
                     break;
                 default:
                     Comprobaciones.crearAlertaError("Debe seleccionar el tipo de vehículo");

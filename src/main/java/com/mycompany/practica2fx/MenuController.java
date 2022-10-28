@@ -63,17 +63,17 @@ public class MenuController implements Initializable {
     @FXML
     private TableColumn<Vehiculo, String> cModelo;
     @FXML
-    private TableColumn<Vehiculo, String> cPeso;
+    private TableColumn<Vehiculo, Integer> cPeso;
     @FXML
-    private TableColumn<Vehiculo, String> cCilindrada;
+    private TableColumn<Vehiculo, Integer> cCilindrada;
+    
+    ObservableList<Vehiculo> listaTabla;
 
     @FXML
     private MenuButton menuUser;
 
     @FXML
     private MenuItem verPerfil, salirPerfil;
-    
-    ObservableList<Vehiculo> oblist = FXCollections.observableArrayList();
 
     //PARA AÑADIR UN NUEVO VEHICULO
     @FXML
@@ -104,35 +104,38 @@ public class MenuController implements Initializable {
         loginStage.close();
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
-
+    //METODO PARA LLENAR LA TABLA CON UN OBLIST
+    public ObservableList<Vehiculo> getVehiculos() {
         Connection con = getConexion();
-        menuUser.setText(VariablesLogin.getNombreUser());
-
-        cMarca.setCellValueFactory(new PropertyValueFactory<>("marca"));
-        cModelo.setCellValueFactory(new PropertyValueFactory<>("modelo"));
-        cPeso.setCellValueFactory(new PropertyValueFactory<>("peso"));
-        cCilindrada.setCellValueFactory(new PropertyValueFactory<>("cilindrada"));
-        cMatricula.setCellValueFactory(new PropertyValueFactory<>("matricula"));
-
-        try
-        {
-
-            ResultSet rs = con.createStatement().executeQuery("SELECT * FROM vehiculo");
-            while (rs.next())
-            {
-                /*oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
+        ObservableList<Vehiculo> oblist = FXCollections.observableArrayList();
+        
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * from vehiculo");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
                         rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
-                tablaVehiculos.setItems(oblist);
-*/
+                
             }
-        } catch (SQLException ex)
-        {
+        } catch (SQLException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return oblist; 
+    }
 
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+
+        menuUser.setText(VariablesLogin.getNombreUser());
+
+        cMarca.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("marca"));
+        cModelo.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("modelo"));
+        cPeso.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("peso"));
+        cCilindrada.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("cilindrada"));
+        cMatricula.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("matricula"));
+        
+        listaTabla = getVehiculos();
+        tablaVehiculos.setItems(listaTabla);
     }
 
 }
