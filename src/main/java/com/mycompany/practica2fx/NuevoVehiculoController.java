@@ -22,11 +22,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.CRUD_Coche;
-import modelo.Coche;
-import modelo.Comprobaciones;
-import modelo.Moto;
-import modelo.VariablesLogin;
 
 /**
  * FXML Controller class

@@ -24,10 +24,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.CRUD_Usuarios;
-import modelo.Comprobaciones;
-import static modelo.Conexion.getConexion;
-import modelo.VariablesLogin;
+import static com.mycompany.practica2fx.Conexion.getConexion;
 
 /**
  * FXML Controller class

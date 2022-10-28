@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package modelo;
+package com.mycompany.practica2fx;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -103,27 +103,5 @@ public class CRUD_Coche {
         }
     }
 
-    public static void verCoches() {
-        Connection con = Conexion.getConexion();
-        String sentenciaSql = "SELECT * FROM vehiculo";
-        PreparedStatement sentencia = null;
-        ResultSet resultado = null;
-        String matricula;
-        String marca;
-        try
-        {
-            sentencia = con.prepareStatement(sentenciaSql);
-            resultado = sentencia.executeQuery();
-            while (resultado.next())
-            {
-                matricula=resultado.getString(1);
-                marca=resultado.getString(2);
-            }
-        } catch (SQLException sqle)
-        {
-            sqle.printStackTrace();
-        
-        }
-
-    }
+   
 }

@@ -34,12 +34,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.CRUD_Coche;
-import modelo.Comprobaciones;
-import modelo.Conexion;
-import static modelo.Conexion.getConexion;
-import modelo.VariablesLogin;
-import modelo.Vehiculo;
+import static com.mycompany.practica2fx.Conexion.getConexion;
 
 /**
  * FXML Controller class
@@ -66,7 +61,7 @@ public class MenuController implements Initializable {
     private TableColumn<Vehiculo, Integer> cPeso;
     @FXML
     private TableColumn<Vehiculo, Integer> cCilindrada;
-    
+
     ObservableList<Vehiculo> listaTabla;
 
     @FXML
@@ -74,6 +69,9 @@ public class MenuController implements Initializable {
 
     @FXML
     private MenuItem verPerfil, salirPerfil;
+    
+    @FXML
+    private Label lblMatricula;
 
     //PARA AÑADIR UN NUEVO VEHICULO
     @FXML
@@ -108,21 +106,50 @@ public class MenuController implements Initializable {
     public ObservableList<Vehiculo> getVehiculos() {
         Connection con = getConexion();
         ObservableList<Vehiculo> oblist = FXCollections.observableArrayList();
-        
+
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * from vehiculo");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
                         rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
-                
+               
+
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return oblist; 
+        
+        return oblist;
     }
 
+    public void borrarVehiculos() {
+        Connection con = getConexion();
+        getSelected();
+        tablaVehiculos.getItems().removeAll(tablaVehiculos.getSelectionModel().getSelectedItem());
+        String sentenciaSql = "DELETE  from  vehiculo WHERE matricula = ?";
+        PreparedStatement sentencia = null;
+
+        try {
+                sentencia = con.prepareStatement(sentenciaSql);
+                sentencia.setString(1,lblMatricula.getText());
+                sentencia.execute();
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+    }
+
+    
+    public void getSelected(){
+        int index = tablaVehiculos.getSelectionModel().getSelectedIndex();
+        if(index<=-1){
+            return;
+        }
+        lblMatricula.setText(cMatricula.getCellData(index).toString());
+    }
+    
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -133,7 +160,8 @@ public class MenuController implements Initializable {
         cPeso.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("peso"));
         cCilindrada.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("cilindrada"));
         cMatricula.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("matricula"));
-        
+
+        //LLENAMOS LA TABLA A TRAVES DEL METODO
         listaTabla = getVehiculos();
         tablaVehiculos.setItems(listaTabla);
     }

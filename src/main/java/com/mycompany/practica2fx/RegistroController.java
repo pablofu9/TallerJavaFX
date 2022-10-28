@@ -18,12 +18,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import modelo.CRUD_Usuarios;
-import modelo.Comprobaciones;
-import modelo.Conexion;
-import static modelo.Conexion.conectar;
-import static modelo.Conexion.getConexion;
-import modelo.Usuarios;
+import static com.mycompany.practica2fx.Conexion.conectar;
+import static com.mycompany.practica2fx.Conexion.getConexion;
 
 /**
  * FXML Controller class
