@@ -48,7 +48,7 @@ public class MenuController implements Initializable {
      * Initializes the controller class.
      */
     @FXML
-    private Button btnAlta, btnModificar, btnEliminar;
+    private Button btnAlta, btnModificar, btnEliminar, botonRefrescar;
 
     @FXML
     private TableView<Vehiculo> tablaVehiculos;
@@ -107,22 +107,28 @@ public class MenuController implements Initializable {
 
     //METODO PARA LLENAR LA TABLA CON UN OBLIST
     public ObservableList<Vehiculo> getVehiculos() {
-        Connection con = getConexion();
-        ObservableList<Vehiculo> oblist = FXCollections.observableArrayList();
+        con = getConexion();
+        listaTabla = FXCollections.observableArrayList();
 
         try {
             PreparedStatement ps = con.prepareStatement("SELECT * from vehiculo");
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
+                listaTabla.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
                         rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
+        tablaVehiculos.setItems(listaTabla);
+        return listaTabla;
+    }
 
-        return oblist;
+    
+    //METODO DEL BOTON PARA REFRESCAR LA TABLA
+    public void refrescarTabla() {
+        tablaVehiculos.setItems(getVehiculos());
     }
 
     //METODO PARA BORRAR LOS VEHICULOS DE LA TABLA
@@ -216,9 +222,7 @@ public class MenuController implements Initializable {
         cMatricula.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("matricula"));
 
         //LLENAMOS LA TABLA A TRAVES DEL METODO
-        listaTabla = getVehiculos();
-        tablaVehiculos.setItems(listaTabla);
-
+        getVehiculos();
     }
 
 }

@@ -39,7 +39,7 @@
       </MenuButton>
       <Separator layoutX="143.0" layoutY="-1.0" orientation="VERTICAL" prefHeight="468.0" prefWidth="9.0" />
       <Label layoutX="40.0" layoutY="23.0" text="MATRICULA" />
-      <TextField fx:id="txtMatricula" layoutX="21.0" layoutY="51.0" prefHeight="5.0" prefWidth="103.0" />
+      <TextField fx:id="txtMatricula" editable="false" layoutX="21.0" layoutY="51.0" prefHeight="5.0" prefWidth="103.0" />
       <Label layoutX="49.0" layoutY="103.0" text="MARCA" />
       <TextField fx:id="txtMarca" layoutX="21.0" layoutY="131.0" prefHeight="5.0" prefWidth="103.0" />
       <Label layoutX="47.0" layoutY="184.0" text="MODELO" />
@@ -48,5 +48,6 @@
       <TextField fx:id="txtPeso" layoutX="21.0" layoutY="288.0" prefHeight="5.0" prefWidth="103.0" />
       <Label layoutX="34.0" layoutY="343.0" prefHeight="17.0" prefWidth="80.0" text="CILINDRADA" />
       <TextField fx:id="txtCilindrada" layoutX="21.0" layoutY="371.0" prefHeight="5.0" prefWidth="103.0" />
+      <Button fx:id="botonRefrescar" layoutX="158.0" layoutY="383.0" mnemonicParsing="false" onAction="#refrescarTabla" prefHeight="27.0" prefWidth="127.0" text="Reload table" textFill="WHITE" />
    </children>
 </AnchorPane>
