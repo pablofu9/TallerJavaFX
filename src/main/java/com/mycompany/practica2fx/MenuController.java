@@ -35,6 +35,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import static com.mycompany.practica2fx.Conexion.getConexion;
+import javafx.scene.control.TextField;
 
 /**
  * FXML Controller class
@@ -69,9 +70,9 @@ public class MenuController implements Initializable {
 
     @FXML
     private MenuItem verPerfil, salirPerfil;
-    
+
     @FXML
-    private Label lblMatricula;
+    private TextField txtMatricula, txtMarca, txtModelo, txtPeso, txtCilindrada;
 
     //PARA AÑADIR UN NUEVO VEHICULO
     @FXML
@@ -102,6 +103,8 @@ public class MenuController implements Initializable {
         loginStage.close();
     }
 
+    Connection con;
+
     //METODO PARA LLENAR LA TABLA CON UN OBLIST
     public ObservableList<Vehiculo> getVehiculos() {
         Connection con = getConexion();
@@ -113,70 +116,97 @@ public class MenuController implements Initializable {
             while (rs.next()) {
                 oblist.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
                         rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
-               
 
             }
         } catch (SQLException ex) {
             Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return oblist;
     }
 
     //METODO PARA BORRAR LOS VEHICULOS DE LA TABLA
     public void borrarVehiculos() {
-        Connection con = getConexion();
+        con = getConexion();
         getSelected();
         tablaVehiculos.getItems().removeAll(tablaVehiculos.getSelectionModel().getSelectedItem());
         String sentenciaSql = "DELETE  from  vehiculo WHERE matricula = ?";
         PreparedStatement sentencia = null;
 
         try {
-                sentencia = con.prepareStatement(sentenciaSql);
-                sentencia.setString(1,lblMatricula.getText());
-                sentencia.execute();
+            sentencia = con.prepareStatement(sentenciaSql);
+            sentencia.setString(1, txtMatricula.getText());
+            sentencia.execute();
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
-        
+
         //BORRAR FROM COCHE
         String sentenciaSql1 = "DELETE  from  coche WHERE matricula = ?";
         PreparedStatement sentencia1 = null;
         try {
-                sentencia1 = con.prepareStatement(sentenciaSql1);
-                sentencia1.setString(1,lblMatricula.getText());
-                sentencia1.execute();
+            sentencia1 = con.prepareStatement(sentenciaSql1);
+            sentencia1.setString(1, txtMatricula.getText());
+            sentencia1.execute();
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
-        
+
         //BORRAR FROM MOTO
         String sentenciaSql2 = "DELETE  from  moto WHERE matricula = ?";
         PreparedStatement sentencia2 = null;
 
         try {
-                sentencia2 = con.prepareStatement(sentenciaSql2);
-                sentencia2.setString(1,lblMatricula.getText());
-                sentencia2.execute();
+            sentencia2 = con.prepareStatement(sentenciaSql2);
+            sentencia2.setString(1, txtMatricula.getText());
+            sentencia2.execute();
         } catch (SQLException sqle) {
             sqle.printStackTrace();
         }
 
     }
 
-    //VEMOS QUE ITEM DE LA TABLA ESTA SELECCIONADO
-    public void getSelected(){
+    //VEMOS QUE ITEM DE LA TABLA ESTA SELECCIONADO AL PULSAR EN UN ITEM DE LA TABLA
+    public void getSelected() {
         int index = tablaVehiculos.getSelectionModel().getSelectedIndex();
-        if(index<=-1){
+        if (index <= -1) {
             return;
         }
-        lblMatricula.setText(cMatricula.getCellData(index).toString());
+        txtMatricula.setText(cMatricula.getCellData(index).toString());
+        txtMarca.setText(cMarca.getCellData(index).toString());
+        txtModelo.setText(cModelo.getCellData(index).toString());
+        txtPeso.setText(cPeso.getCellData(index).toString());
+        txtCilindrada.setText(cCilindrada.getCellData(index).toString());
+
     }
-    
-    
+
+    //PARA MODIFICAR LA TABLA  (FALTA MODIFICAR EN LA TABLE COCHE / MOTO)
+    public void btnModificarOnClick() {
+        con = getConexion();
+
+        try {
+            String valueMatricula = txtMatricula.getText();
+            String valueMarca = txtMarca.getText();
+            String valueModelo = txtModelo.getText();
+            int valuePeso = Integer.parseInt(txtPeso.getText());
+            int valueCilindrada = Integer.parseInt(txtCilindrada.getText());
+
+            String sentenciaSql = "UPDATE vehiculo SET matricula = '" + valueMatricula + "',marca = '" + valueMarca + "',modelo = '" + valueModelo + "',peso = '" + valuePeso + "',cilindrada = '" + valueCilindrada + "' "
+                    + "WHERE matricula='" + valueMatricula + "'";
+            PreparedStatement sentencia = null;
+            sentencia = con.prepareStatement(sentenciaSql);
+            sentencia.executeUpdate();
+
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
+        con = getConexion();
         menuUser.setText(VariablesLogin.getNombreUser());
 
         cMarca.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("marca"));
@@ -188,6 +218,7 @@ public class MenuController implements Initializable {
         //LLENAMOS LA TABLA A TRAVES DEL METODO
         listaTabla = getVehiculos();
         tablaVehiculos.setItems(listaTabla);
+
     }
 
 }
