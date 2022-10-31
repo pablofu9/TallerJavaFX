@@ -11,8 +11,8 @@
     -fx-background-color:#0276FF;
     -fx-border-style: solid;
     -fx-border-radius: 5px;
-    
-    
+
+
 }
 
 .button:hover{
@@ -26,6 +26,12 @@
     -fx-background-color: #C0F4FD;
 }
 
-.textField{
-    -fx-border: 0 10px 0 0;
+.text-field{
+
+    -fx-background-color: white;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-background-radius: 0;
+}
+.text-field:focused {
+	-fx-background-color: lightgrey;
 }

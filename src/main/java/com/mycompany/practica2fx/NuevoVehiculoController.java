@@ -124,6 +124,12 @@ public class NuevoVehiculoController implements Initializable {
                     Comprobaciones.crearAlertaError("Debe seleccionar el tipo de vehículo");
                     break;
             }
+            txtMatricula.setText(" ");
+            txtMarca.setText(" ");
+            txtModelo.setText(" ");
+            txtPeso.setText(" ");
+            txtCilindrada.setText(" ");
+            
         }else{
             Comprobaciones.crearAlertaError("El formato de matricula no es correcto");
         }
