@@ -4,8 +4,10 @@
  */
 package com.mycompany.practica2fx;
 
+import static com.mycompany.practica2fx.Conexion.getConexion;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -142,6 +144,7 @@ public class NuevoVehiculoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        Connection con=getConexion();
         menuUserNuevoVehiculo.setText(VariablesLogin.getNombreUser());
         cmbTipo.getItems().add("Coche");
         cmbTipo.getItems().add("Moto");

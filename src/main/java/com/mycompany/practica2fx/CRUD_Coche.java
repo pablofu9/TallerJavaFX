@@ -4,12 +4,15 @@
  */
 package com.mycompany.practica2fx;
 
+import static com.mycompany.practica2fx.Conexion.getConexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -48,6 +51,7 @@ public class CRUD_Coche {
             }
 
             con.commit();
+            con.setAutoCommit(true);
             Comprobaciones.crearAlertaInfo("Vehiculo creado");
 
         } catch (SQLException e)
@@ -103,5 +107,86 @@ public class CRUD_Coche {
         }
     }
 
+    //PARA BORRAR DE AMBAS TABLAS
+    public static void borrarVehiculo(String matricula){
+        Connection con = getConexion();
+        
+        String sentenciaSql = "DELETE  from  vehiculo WHERE matricula = ?";
+        PreparedStatement sentencia = null;
+        String sentenciaSql1 = "DELETE  from  coche WHERE matricula = ?";
+        PreparedStatement sentencia1 = null;
+        String sentenciaSql2 = "DELETE  from  moto WHERE matricula = ?";
+        PreparedStatement sentencia2 = null;
+
+        try {
+            con.setAutoCommit(false);
+            sentencia = con.prepareStatement(sentenciaSql);
+            sentencia.setString(1, matricula);
+            sentencia.execute();
+            sentencia1 = con.prepareStatement(sentenciaSql1);
+            sentencia1.setString(1, matricula);
+            sentencia1.execute();
+            sentencia2 = con.prepareStatement(sentenciaSql2);
+            sentencia2.setString(1, matricula);
+            sentencia2.execute();
+            con.commit();
+            con.setAutoCommit(true);
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+        
+    }
    
+    //PARA LLENAR LA TABLA
+    public static ObservableList<Vehiculo> getVehiculos() {
+        Connection con;
+        con=getConexion();
+        ObservableList <Vehiculo> listaTabla;
+        listaTabla = FXCollections.observableArrayList();
+
+        try {
+            PreparedStatement ps = con.prepareStatement("SELECT * from vehiculo");
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                listaTabla.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
+                        rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
+
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return listaTabla;
+    }
+    
+    //PARA MODIFICAR LA TABLA
+    public static void modificarVehiculo(Vehiculo v1) {
+        Connection con = getConexion();
+        
+        try {
+            con.setAutoCommit(false);
+            String valueMatricula = v1.getMatricula();
+            String valueMarca = v1.getMarca();
+            String valueModelo = v1.getModelo();
+            int valuePeso = v1.getPeso();
+            int valueCilindrada =v1.getCilindrada();
+
+            String sentenciaSql = "UPDATE vehiculo SET matricula = ?,marca = ?,modelo = ?,peso = ?,cilindrada = ? "
+                    + "WHERE matricula=?";
+            PreparedStatement sentencia = null;
+            sentencia = con.prepareStatement(sentenciaSql);
+            sentencia.setString(1, valueMatricula);
+            sentencia.setString(2, valueMarca);
+            sentencia.setString(3, valueModelo);
+            sentencia.setInt(4, valuePeso);
+            sentencia.setInt(5, valueCilindrada);
+            sentencia.setString(6, valueMatricula);
+            sentencia.executeUpdate();
+            con.commit();
+            con.setAutoCommit(true);
+        } catch (SQLException sqle) {
+            sqle.printStackTrace();
+        }
+
+    }
 }

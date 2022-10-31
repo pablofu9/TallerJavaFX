@@ -63,7 +63,6 @@ public class MenuController implements Initializable {
     @FXML
     private TableColumn<Vehiculo, Integer> cCilindrada;
 
-    ObservableList<Vehiculo> listaTabla;
 
     @FXML
     private MenuButton menuUser;
@@ -73,6 +72,8 @@ public class MenuController implements Initializable {
 
     @FXML
     private TextField txtMatricula, txtMarca, txtModelo, txtPeso, txtCilindrada;
+    
+    
 
     //PARA AÑADIR UN NUEVO VEHICULO
     @FXML
@@ -102,73 +103,21 @@ public class MenuController implements Initializable {
         Stage loginStage = (Stage) this.menuUser.getScene().getWindow();
         loginStage.close();
     }
-
-    Connection con;
-
-    //METODO PARA LLENAR LA TABLA CON UN OBLIST
-    public ObservableList<Vehiculo> getVehiculos() {
-        con = getConexion();
-        listaTabla = FXCollections.observableArrayList();
-
-        try {
-            PreparedStatement ps = con.prepareStatement("SELECT * from vehiculo");
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                listaTabla.add(new Vehiculo(rs.getString("marca"), rs.getString("modelo"),
-                        rs.getInt("peso"), rs.getInt("cilindrada"), rs.getString("matricula")));
-
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(MenuController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        tablaVehiculos.setItems(listaTabla);
-        return listaTabla;
-    }
-
     
     //METODO DEL BOTON PARA REFRESCAR LA TABLA
     public void refrescarTabla() {
-        tablaVehiculos.setItems(getVehiculos());
+       tablaVehiculos.setItems(CRUD_Coche.getVehiculos());
     }
 
     //METODO PARA BORRAR LOS VEHICULOS DE LA TABLA
-    public void borrarVehiculos() {
-        con = getConexion();
+    public void borrarVehiculos(){
+        
         getSelected();
         tablaVehiculos.getItems().removeAll(tablaVehiculos.getSelectionModel().getSelectedItem());
-        String sentenciaSql = "DELETE  from  vehiculo WHERE matricula = ?";
-        PreparedStatement sentencia = null;
+        CRUD_Coche.borrarVehiculo(txtMatricula.getText());
+        
 
-        try {
-            sentencia = con.prepareStatement(sentenciaSql);
-            sentencia.setString(1, txtMatricula.getText());
-            sentencia.execute();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-
-        //BORRAR FROM COCHE
-        String sentenciaSql1 = "DELETE  from  coche WHERE matricula = ?";
-        PreparedStatement sentencia1 = null;
-        try {
-            sentencia1 = con.prepareStatement(sentenciaSql1);
-            sentencia1.setString(1, txtMatricula.getText());
-            sentencia1.execute();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-
-        //BORRAR FROM MOTO
-        String sentenciaSql2 = "DELETE  from  moto WHERE matricula = ?";
-        PreparedStatement sentencia2 = null;
-
-        try {
-            sentencia2 = con.prepareStatement(sentenciaSql2);
-            sentencia2.setString(1, txtMatricula.getText());
-            sentencia2.execute();
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
+        
 
     }
 
@@ -186,33 +135,18 @@ public class MenuController implements Initializable {
 
     }
 
-    //PARA MODIFICAR LA TABLA  (FALTA MODIFICAR EN LA TABLE COCHE / MOTO)
+    //PARA MODIFICAR LA TABLA
     public void btnModificarOnClick() {
-        con = getConexion();
-
-        try {
-            String valueMatricula = txtMatricula.getText();
-            String valueMarca = txtMarca.getText();
-            String valueModelo = txtModelo.getText();
-            int valuePeso = Integer.parseInt(txtPeso.getText());
-            int valueCilindrada = Integer.parseInt(txtCilindrada.getText());
-
-            String sentenciaSql = "UPDATE vehiculo SET matricula = '" + valueMatricula + "',marca = '" + valueMarca + "',modelo = '" + valueModelo + "',peso = '" + valuePeso + "',cilindrada = '" + valueCilindrada + "' "
-                    + "WHERE matricula='" + valueMatricula + "'";
-            PreparedStatement sentencia = null;
-            sentencia = con.prepareStatement(sentenciaSql);
-            sentencia.executeUpdate();
-
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-
+        
+        Vehiculo v1 = new Vehiculo(txtMarca.getText(), txtModelo.getText(),Integer.parseInt(txtPeso.getText()), Integer.parseInt(txtCilindrada.getText()),txtMatricula.getText());
+        CRUD_Coche.modificarVehiculo(v1);
+        refrescarTabla();
     }
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
-        con = getConexion();
+        
+        
         menuUser.setText(VariablesLogin.getNombreUser());
 
         cMarca.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("marca"));
@@ -220,9 +154,11 @@ public class MenuController implements Initializable {
         cPeso.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("peso"));
         cCilindrada.setCellValueFactory(new PropertyValueFactory<Vehiculo, Integer>("cilindrada"));
         cMatricula.setCellValueFactory(new PropertyValueFactory<Vehiculo, String>("matricula"));
-
-        //LLENAMOS LA TABLA A TRAVES DEL METODO
-        getVehiculos();
+        
+        //LLENAR LA TABLA CUANDO SE INICIE LA VISTA
+        tablaVehiculos.setItems(CRUD_Coche.getVehiculos());
+        
+        
     }
 
 }

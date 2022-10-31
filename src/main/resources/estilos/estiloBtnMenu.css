@@ -26,3 +26,6 @@
     -fx-background-color: #C0F4FD;
 }
 
+.textField{
+    -fx-border: 0 10px 0 0;
+}
