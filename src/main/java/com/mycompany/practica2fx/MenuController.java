@@ -121,6 +121,9 @@ public class MenuController implements Initializable {
 
     }
 
+    
+   
+    
     //VEMOS QUE ITEM DE LA TABLA ESTA SELECCIONADO AL PULSAR EN UN ITEM DE LA TABLA
     public void getSelected() {
         int index = tablaVehiculos.getSelectionModel().getSelectedIndex();
